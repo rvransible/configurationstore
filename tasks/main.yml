@@ -1,0 +1,15 @@
+---
+# tasks file for configurationstore
+  - name: Create the configurationstore target directory
+    become: true
+    file:
+      path: "/etc/rvr/"
+      state: directory
+      owner: "root"
+
+  - name: Create / update the configurationstore file
+    become: true
+    ansible.builtin.template:
+      src: ./templates/config.ini.j2
+      dest: /etc/rvr/config.ini
+      owner: "root"
